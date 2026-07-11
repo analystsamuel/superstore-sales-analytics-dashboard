@@ -1,61 +1,36 @@
-# Global Superstore End-to-End Analytics Pipeline
+# Superstore Data Pipeline: From Raw Data to Power BI Dashboard
 
-An end-to-end data analytics project mapping the journey of raw enterprise retail transactional data through an SQL cleaning and staging workflow, concluding with an enterprise-grade, multi-page Power BI tracking application.
+This project demonstrates an end-to-end analytics workflow. I took a messy, raw retail dataset, cleaned and staged it using SQL, and built a high-end, multi-page Power BI dashboard to track executive metrics.
 
-## Repository File Architecture
-* 📂 **Data Layers:**
-  * `Sample - Superstore.csv` — The raw, unstructured source dataset containing historical transactions.
-  * `susuperstore_staging.csv` — The processed, optimized, and deduplicated staging data exported after SQL engineering.
-* 📂 **Analytics Application:**
-  * `Superstore Dashboard.pbix` — The final production-ready Power BI dashboard file including data models and DAX logic.
-* 📂 **Documentation Assets:**
-  * `S.Home.png` — Visual documentation of the Executive Overview canvas.
-  * `S.Customers.png` — Visual documentation of the Customer Segmentation canvas.
-  * `S.Sales.png` — Visual documentation of the Sales Performance canvas.
+## The Files in This Repo
+* `Sample - Superstore.csv` - Raw, uncleaned source data with duplicates and formatting issues.
+* `susuperstore_staging.csv` - Cleaned, deduplicated data exported from my SQL staging environment.
+* `Superstore Dashboard.pbix` - Final Power BI file with the live data model and interactive visuals.
+* `S.Home.png`, `S.Sales.png`, `S.Customers.png` - Screenshots of the dashboard pages.
 
----
+## The Project Flow
 
-## 🏗️ The Data Pipeline & Workflow
+### 1. Data Cleaning (SQL)
+The raw dataset (`Sample - Superstore.csv`) had several data integrity issues that would distort business metrics if left unchecked. I imported it into SQL and performed the following cleaning steps:
+* **Removed Duplicates:** Dropped redundant rows to ensure transaction and order counts were completely accurate.
+* **Standardized Text:** Cleaned up geographical data fields (State and City) to fix casing and naming errors.
+* **Handled Blanks:** Cleaned missing values in shipping and fulfillment columns to keep logistics tracking accurate.
+* **Exported Staging Layer:** Saved the clean output as `susuperstore_staging.csv` as the clean source of truth for reporting.
 
-### Phase 1: Raw Data Ingestion
-The process begins with `Sample - Superstore.csv`. This raw layer represents unvetted transactional records containing missing fields, inconsistent cases, and redundant rows that threaten data integrity.
+### 2. Dashboard Architecture & Metrics
+I loaded the clean staging data into Power BI and built a dark-themed dashboard using custom floating containers for a clean, application-style UI.
 
-### Phase 2: SQL Staging & Engineering
-The raw data was migrated into an SQL database environment for cleaning. A dedicated staging table was established to ensure production safety. Core operations included:
-* **Duplicate Elimination:** Executed deduplication scripts utilizing unique keys to prevent artificial inflation of sales volume.
-* **Geographical & Text Standardization:** Standardized region, state, and city entries into uniform casing and nomenclature for seamless slicer indexing.
-* **Fulfillment Integrity:** Resolved null records in shipping windows and delivery statuses to ensure flawless logistics forecasting.
-* **Export:** The clean structure was materialized as `susuperstore_staging.csv` to serve as the unified source of truth for the reporting engine.
+#### Page 1: Overview (`S.Home.png`)
+Tracks high-level company health:
+* **Total Revenue:** $2.29M | **Total Profit:** $286.41K | **Total Orders:** 9,993
+* **Key Visuals:** A combined Sales & Profit trend line over time, a breakdown showing Technology as the top profit category, and a map showing regional income distribution.
 
-### Phase 3: Production Modeling & Visualization (`Superstore Dashboard.pbix`)
-The staging data was ingested by Power BI, where an optimized star-schema dimensional model was designed alongside advanced DAX measures to build a seamless UI/UX experience.
+#### Page 2: Sales Performance (`S.Sales.png`)
+Deep dive into product and margin performance:
+* **Total Quantity Sold:** 37,871 items | **Profit Margin:** 12.47%
+* **Key Visuals:** A Top 10 products chart identifying Phones and Chairs as top revenue drivers, and a breakdown of sales share by product category.
 
----
-
-## 📊 Dashboard Architecture & Executive Metrics
-
-### 1. Executive Overview (`S.Home.png`)
-Designed with a premium dark theme utilizing floating container geometry to isolate mission-critical high-level KPIs:
-* **Total Revenue:** $2.29M
-* **Total Profit:** $286.41K
-* **Fulfillment Volume:** 9,993 Total Orders
-* *Core Layout:* Features a synchronized temporal line tracking Sales & Profit Trends across years (2014-2017), a clear breakdown of Categories Income identifying Technology as the dominant profit center, and an interactive Income Distribution cartographic map.
-
-### 2. Sales Performance Deep-Dive (`S.Sales.png`)
-An operational analytics interface focusing on volume velocities and margins:
-* **Total Quantity Sold:** 37,871 items
-* **Blended Profit Margin:** 12.47%
-* *Core Layout:* Incorporates a "Top 10 Sold Products" bar chart establishing Phones ($330K) and Chairs ($328K) as core asset drivers, paired with a Sales by Category visual illustrating that Technology captures 36.4% of absolute distribution.
-
-### 3. Customer Insights & Segmentation (`S.Customers.png`)
-An audience intelligence canvas mapping client value groupings and demographic sectors:
-* **Active Customer Base:** 793 Unique Customers
-* **Average Customer Sales (CLV Baseline):** $2,896.49
-* *Core Layout:* Embeds a high-value client matrix isolating tier-1 purchasers (such as Christopher Conant and Sanjit Engle), structurally backed by a Customer Distribution chart proving the "Consumer" tier commands 51.95% of corporate engagement.
-
----
-
-## 🛠️ How to Replicate or Deploy
-1. **Database Stage:** Import `Sample - Superstore.csv` into your SQL instance and run standard profiling and deduplication queries to yield the structured parameters seen in `susuperstore_staging.csv`.
-2. **Dashboard Deployment:** Launch `Superstore Dashboard.pbix` within Power BI Desktop. Ensure data source pathways point perfectly to your local staging file or database schema to refresh dynamic models.
-EOF
+#### Page 3: Customer Insights (`S.Customers.png`)
+Analyzes customer purchasing behavior:
+* **Unique Customers:** 793 | **Avg Sales Per Customer:** $2,896.49
+* **Key Visuals:** A leaderboard tracking top-spending clients, and a chart showing that the "Consumer" segment makes up 51.95% of the business.
