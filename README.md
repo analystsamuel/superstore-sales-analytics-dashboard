@@ -1,4 +1,3 @@
-cat << 'EOF' > README.md
 # Global Superstore End-to-End Analytics Pipeline
 
 An end-to-end data analytics project mapping the journey of raw enterprise retail transactional data through an SQL cleaning and staging workflow, concluding with an enterprise-grade, multi-page Power BI tracking application.
