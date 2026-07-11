@@ -1,4 +1,4 @@
-# Superstore Data Pipeline: From Raw Data to Power BI Dashboard
+# Superstore Data Project: From Raw Data to Power BI Dashboard
 
 This project demonstrates an end-to-end analytics workflow. I took a messy, raw retail dataset, cleaned and staged it using SQL, and built a high-end, multi-page Power BI dashboard to track executive metrics.
 
