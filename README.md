@@ -2,7 +2,7 @@
 
 This project demonstrates an end-to-end analytics workflow. I took a messy, raw retail dataset, cleaned and staged it using SQL, and built a high-end, multi-page Power BI dashboard to track executive metrics.
 
-## The Files in This Repo
+## The Files in This Repository
 * `Sample - Superstore.csv` - Raw, uncleaned source data with duplicates and formatting issues.
 * `susuperstore_staging.csv` - Cleaned, deduplicated data exported from my SQL staging environment.
 * `Superstore Dashboard.pbix` - Final Power BI file with the live data model and interactive visuals.
